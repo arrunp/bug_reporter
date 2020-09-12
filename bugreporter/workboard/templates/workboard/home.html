@@ -3,11 +3,11 @@
 {% for project in projects %}
 <article class="media content-section">
     <div class="media-body">
-        <h2><a class="article-title" href="#">{{ project.project_name }}</a></h2>
-        <p class="article-content">{{ project.content }}</p>
+        <h2><a class="article-title" href="#">{{ project.title }}</a></h2>
+        <p class="article-content">{{ project.summary }}</p>
         <div class="article-metadata">
-            <small class="text-muted">Created by: <a class="mr-2" href="#">{{ project.creator}}</a></small>
-            <small class="text-muted">Created on: {{ project.date_created }}</small>
+            <small class="text-muted">Created by: <a class="mr-2" href="#">{{ project.creator }}</a></small>
+            <small class="text-muted">Created on: {{ project.date_posted|date:"F d, Y" }}</small>
         </div>
     </div>
 </article>
