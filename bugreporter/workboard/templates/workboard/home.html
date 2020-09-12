@@ -1,8 +1,15 @@
 {% extends "workboard/base.html" %}
 {% block content %}
 {% for project in projects %}
-<h1>{{ project.project_name }}</h1>
-<p>By {{ project.creator }} on {{ project.date_created }}</p>
-<p>{{ project.content }}</p>
+<article class="media content-section">
+    <div class="media-body">
+        <h2><a class="article-title" href="#">{{ project.project_name }}</a></h2>
+        <p class="article-content">{{ project.content }}</p>
+        <div class="article-metadata">
+            <small class="text-muted">Created by: <a class="mr-2" href="#">{{ project.creator}}</a></small>
+            <small class="text-muted">Created on: {{ project.date_created }}</small>
+        </div>
+    </div>
+</article>
 {% endfor %}
 {% endblock content %}
