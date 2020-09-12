@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Projects - Home</title>
-</head>
-
-<body>
-    {% for project in projects %}
-    <h1>{{ project.project_name }}</h1>
-    <p>By {{ project.creator }} on {{ project.date_created }}</p>
-    <p>{{ project.content }}</p>
-    {% endfor %}
-</body>
-
-</html>
+{% extends "workboard/base.html" %}
+{% block content %}
+{% for project in projects %}
+<h1>{{ project.project_name }}</h1>
+<p>By {{ project.creator }} on {{ project.date_created }}</p>
+<p>{{ project.content }}</p>
+{% endfor %}
+{% endblock content %}

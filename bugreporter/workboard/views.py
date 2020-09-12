@@ -19,6 +19,7 @@ projects = [
 
 def home(request):
     context = {
-        'projects': projects
+        'projects': projects,
+        'title': 'Projects'
     }
     return render(request, 'workboard/home.html', context)
