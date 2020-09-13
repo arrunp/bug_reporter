@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Project, Bug
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 '''
 @login_required
@@ -31,12 +31,13 @@ class ProjectListView(ListView):
 
 class BugListView(ListView):
     model = Bug
-    template_name = 'workboard/bug.html'
+    template_name = 'workboard/bug_list.html'
     context_object_name = 'bugs'
     ordering = ['-date_posted']
 
     def get_context_data(self, **kwargs):
         context = {
+            'project_title': Project.objects.filter(id=self.kwargs['pk']).first().title,
             'project_id': self.kwargs['pk']
         }
 
@@ -47,3 +48,7 @@ class BugListView(ListView):
 class BugDetailView(DetailView):
     model = Bug
     template_name = 'workboard/bug_detail.html'
+
+
+class ProjectCreateView(CreateView):
+    model = Project

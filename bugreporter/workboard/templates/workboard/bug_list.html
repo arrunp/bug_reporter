@@ -1,5 +1,7 @@
 {% extends "workboard/base.html" %}
 {% block content %}
+<h1>{{ project_title }}</h1>
+<hr>
 {% for bug in bugs %}
 {% if project_id == bug.project.id %}
 <article class="media content-section round">
