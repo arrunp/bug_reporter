@@ -34,3 +34,11 @@ class BugListView(ListView):
     template_name = 'workboard/bug.html'
     context_object_name = 'bugs'
     ordering = ['-date_posted']
+
+    def get_context_data(self, **kwargs):
+        context = {
+            'project_id': self.kwargs['pk']
+        }
+
+        kwargs.update(context)
+        return super().get_context_data(**kwargs)

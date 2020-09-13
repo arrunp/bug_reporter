@@ -1,6 +1,7 @@
 {% extends "workboard/base.html" %}
 {% block content %}
 {% for bug in bugs %}
+{% if project_id == bug.project.id %}
 <article class="media content-section round">
     <div class="media-body">
         <h2><a class="article-title" href="#">{{ bug.bug_title }}</a></h2>
@@ -11,5 +12,6 @@
         </div>
     </div>
 </article>
+{% endif %}
 {% endfor %}
 {% endblock content %}

@@ -3,7 +3,7 @@
 {% for project in projects %}
 <article class="media content-section round">
     <div class="media-body">
-        <h2><a class="article-title" href="#">{{ project.title }}</a></h2>
+        <h2><a class="article-title" href="{% url 'bug-home' project.id %}">{{ project.title }}</a></h2>
         <p class="article-content">{{ project.summary }}</p>
         <div class="article-metadata">
             <small class="text-muted">Created by: <a class="mr-2" href="#">{{ project.creator }}</a></small>
