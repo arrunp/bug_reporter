@@ -42,3 +42,8 @@ class BugListView(ListView):
 
         kwargs.update(context)
         return super().get_context_data(**kwargs)
+
+
+class BugDetailView(DetailView):
+    model = Bug
+    template_name = 'workboard/bug_detail.html'

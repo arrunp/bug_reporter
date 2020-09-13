@@ -3,14 +3,16 @@
 {% for bug in bugs %}
 {% if project_id == bug.project.id %}
 <article class="media content-section round">
+    <img class="rounded-circle article-img" src="{{ bug.creator.profile.image.url }}">
     <div class="media-body">
-        <h2><a class="article-title" href="#">{{ bug.bug_title }}</a></h2>
-        <p class="article-content">{{ bug.bug_summary }}</p>
-        <div class="article-metadata">
-            <small class="text-muted">Created by: <a class="mr-2" href="#">{{ bug.creator }}</a></small>
-            <small class="text-muted">Created on: {{ bug.date_posted|date:"F d, Y" }}</small>
+        <div class="media-body">
+            <h2><a class="article-title" href="{% url 'bug-detail' bug.id %}">{{ bug.bug_title }}</a></h2>
+            <p class="article-content">{{ bug.bug_summary }}</p>
+            <div class="article-metadata">
+                <small class="text-muted">Created by: <a class="mr-2" href="#">{{ bug.creator }}</a></small>
+                <small class="text-muted">Created on: {{ bug.date_posted|date:"F d, Y" }}</small>
+            </div>
         </div>
-    </div>
 </article>
 {% endif %}
 {% endfor %}
