@@ -51,6 +51,14 @@ class BugDetailView(LoginRequiredMixin, DetailView):
     model = Bug
     template_name = 'workboard/bug_detail.html'
 
+    def get_context_data(self, **kwargs):
+        context = {
+            'project_id': Bug.objects.filter(id=self.kwargs['pk']).first().project.id
+        }
+
+        kwargs.update(context)
+        return super().get_context_data(**kwargs)
+
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
@@ -75,6 +83,7 @@ class BugCreateView(LoginRequiredMixin, CreateView):
 
 class ProjectUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Project
+    template_name = "workboard/project_update.html"
     fields = ['title', 'summary']
 
     def form_valid(self, form):
