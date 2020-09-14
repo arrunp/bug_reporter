@@ -39,6 +39,7 @@ class BugListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = {
             'project_title': Project.objects.filter(id=self.kwargs['pk']).first().title,
+            'project_summary': Project.objects.filter(id=self.kwargs['pk']).first().summary,
             'project_id': self.kwargs['pk']
         }
 
