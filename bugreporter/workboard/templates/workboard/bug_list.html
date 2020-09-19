@@ -6,6 +6,7 @@
             <h1>{{ project_title }}</h1>
             <p>{{ project_summary }}</p>
         </div>
+        <!--button that we are updating with ellipsis-->
         <div class="col-sm-2" style="text-align:right; margin-top:auto; margin-bottom:auto;">
             <div class="btn-group" role="group">
                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
@@ -17,11 +18,12 @@
                 </div>
             </div>
         </div>
+        <!--button that we are updating with ellipsis-->
     </div>
 </div>
 <hr>
 <div class="form-group">
-    <a class="btn btn-outline-success" href="{% url 'bug-create' project_id%}">Add New
+    <a class="btn btn-outline-success" href="{% url 'bug-create' project_id%}"><i class="fa fa-plus"></i> Add New
         Bug</a>
 </div>
 {% for bug in bugs %}
@@ -56,6 +58,7 @@
                 <small class="text-muted">Created on: {{ bug.date_posted|date:"F d, Y" }}</small>
             </div>
         </div>
+
 </article>
 {% endif %}
 {% endfor %}
