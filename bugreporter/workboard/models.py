@@ -19,12 +19,28 @@ class Project(models.Model):
 
 
 class Bug(models.Model):
+    New = 'New'
+    Active = 'Active'
+    OnHold = 'On Hold'
+    Resolved = 'Resolved'
+    Closed = 'Closed'
+
+    STATUS_CHOICES = [
+        (New, 'New'),
+        (Active, 'Active'),
+        (OnHold, 'On Hold'),
+        (Resolved, 'Resolved'),
+        (Closed, 'Closed')
+    ]
+
     bug_title = models.CharField(max_length=150)
     bug_summary = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     last_modified = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, default=0)
+    status = models.CharField(
+        max_length=8, choices=STATUS_CHOICES, default=New)
 
     def __str__(self):
         return self.title
@@ -34,12 +50,28 @@ class Bug(models.Model):
 
 
 class Task(models.Model):
+    New = 'New'
+    Active = 'Active'
+    OnHold = 'On Hold'
+    Resolved = 'Resolved'
+    Closed = 'Closed'
+
+    STATUS_CHOICES = [
+        (New, 'New'),
+        (Active, 'Active'),
+        (OnHold, 'On Hold'),
+        (Resolved, 'Resolved'),
+        (Closed, 'Closed')
+    ]
+
     task_title = models.CharField(max_length=150)
     task_summary = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     last_modified = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, default=0)
+    status = models.CharField(
+        max_length=8, choices=STATUS_CHOICES, default=New)
 
     def __str__(self):
         return self.title

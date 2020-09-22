@@ -9,13 +9,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-9">
-                    <h2><a class="article-title" href="{% url 'bug-detail' bug.id %}">{{ object.bug_title }}</a></h2>
+                    <h2>{{ object.bug_title }}</h2>
+                    <p class="text-muted">BUG ID - {{ object.id }}</p>
                     <p class="article-content">{{ object.bug_summary }}</p>
                 </div>
                 <div class="col-sm-3" style="margin:auto; text-align:right;">
                     <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Update
+                        <button type="button" class="round" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="background:white; border:1px lightgrey solid;"><i
+                                class="fa fa-cog"></i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item" href="{% url 'bug-update' object.id %}">Update</a>
