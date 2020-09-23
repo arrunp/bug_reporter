@@ -36,14 +36,20 @@
     </div>
 </article>
 
+<div style="margin-bottom: 20px;">
+    <h4>Comments:</h4>
+</div>
+
 
 {% for comment in comments %}
 {% if comment.bug.id == object.id %}
 <article class=" media content-section round">
     <div class="media-body">
         <p>{{ comment }}</p>
-        <small class="text-muted">Comment by: <a class="mr-2" href="#">{{ comment.author }}</a></small>
-        <small class="text-muted">Created on: {{ comment.created_date|date:"F d, Y  h:i a" }}</small>
+        <div class="article-metadata">
+            <small class="text-muted">Comment by: <a class="mr-2" href="#">{{ comment.author }}</a></small>
+            <small class="text-muted">Created on: {{ comment.created_date|date:"F d, Y  h:i a" }}</small>
+        </div>
     </div>
 </article>
 {% endif %}
