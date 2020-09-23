@@ -11,6 +11,8 @@
                 <div class="col-sm-9">
                     <h2>{{ object.bug_title }}</h2>
                     <p class="text-muted">BUG ID - {{ object.id }}</p>
+                    <!--add a dropdown to change the bug status from the details screen-->
+                    <p class="text-muted">Status: {{ bug.status }}</p>
                     <p class="article-content">{{ object.bug_summary }}</p>
                 </div>
                 <div class="col-sm-3" style="margin:auto; text-align:right;">
@@ -32,6 +34,10 @@
             <small class="text-muted">Created on: {{ object.date_posted|date:"F d, Y" }}</small>
         </div>
     </div>
+</article>
+
+<article class=" media content-section round">
+    <div class="media-body"> Hello </div>
 </article>
 
 {% endblock content %}
