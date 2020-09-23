@@ -43,7 +43,7 @@ class Bug(models.Model):
         max_length=8, choices=STATUS_CHOICES, default=New)
 
     def __str__(self):
-        return self.title
+        return self.bug_title
 
     def get_absolute_url(self):
         return reverse('bug-detail', kwargs={'pk': self.pk})
@@ -74,7 +74,7 @@ class Task(models.Model):
         max_length=8, choices=STATUS_CHOICES, default=New)
 
     def __str__(self):
-        return self.title
+        return self.task_title
 
 
 class Comment(models.Model):
@@ -84,4 +84,4 @@ class Comment(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.title
+        return self.text

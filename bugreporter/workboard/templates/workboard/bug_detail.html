@@ -12,7 +12,7 @@
                     <h2>{{ object.bug_title }}</h2>
                     <p class="text-muted">BUG ID - {{ object.id }}</p>
                     <!--add a dropdown to change the bug status from the details screen-->
-                    <p class="text-muted">Status: {{ bug.status }}</p>
+                    <p class="text-muted">Status: {{ object.status }}</p>
                     <p class="article-content">{{ object.bug_summary }}</p>
                 </div>
                 <div class="col-sm-3" style="margin:auto; text-align:right;">
@@ -36,8 +36,18 @@
     </div>
 </article>
 
+
+{% for comment in comments %}
+{% if comment.bug.id == object.id %}
 <article class=" media content-section round">
-    <div class="media-body"> Hello </div>
+    <div class="media-body">
+        <p>{{ comment }}</p>
+        <small class="text-muted">Comment by: <a class="mr-2" href="#">{{ comment.author }}</a></small>
+        <small class="text-muted">Created on: {{ comment.created_date|date:"F d, Y  h:i a" }}</small>
+    </div>
 </article>
+{% endif %}
+{% endfor %}
+
 
 {% endblock content %}

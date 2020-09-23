@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Project, Bug
+from .models import Project, Bug, Comment
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -53,7 +53,8 @@ class BugDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = {
-            'project_id': Bug.objects.filter(id=self.kwargs['pk']).first().project.id
+            'project_id': Bug.objects.filter(id=self.kwargs['pk']).first().project.id,
+            'comments': reversed(Comment.objects.all())
         }
 
         kwargs.update(context)
