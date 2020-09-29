@@ -1,8 +1,12 @@
-from django.shortcuts import render
+
+from django.shortcuts import render, redirect, reverse
+from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from .models import Project, Bug, Comment
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
 
 '''
 @login_required
@@ -63,7 +67,7 @@ class BugDetailView(LoginRequiredMixin, DetailView):
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
-    #template_name = 'workboard/project_create.html'
+    # template_name = 'workboard/project_create.html'
     fields = ['title', 'summary']
 
     def form_valid(self, form):
@@ -138,3 +142,23 @@ class ProjectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         else:
             return False
+
+
+def addComment(request,  **kwargs):
+    # things that worked, get rid of self, find a way to reference bug for comment.bug
+    # include dictionary to send the bug id to the comments page
+    if request.method == 'POST':
+        if request.POST.get('commentField'):
+            comment = Comment()
+            comment.text = request.POST.get('commentField')
+            comment.author = request.user
+            comment.bug = Bug.objects.filter(
+                id=kwargs['pk']).first()
+
+            comment.save()
+
+            context = {
+                'pk': kwargs['pk']
+            }
+
+            return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))

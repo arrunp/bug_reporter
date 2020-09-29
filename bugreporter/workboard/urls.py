@@ -16,6 +16,8 @@ urlpatterns = [
     path('project/bug/<int:pk>/delete/',
          BugDeleteView.as_view(), name='bug-delete'),
     path('project/<int:pk>/delete/',
-         ProjectDeleteView.as_view(), name='project-delete')
+         ProjectDeleteView.as_view(), name='project-delete'),
+    path('project/bug/<int:pk>/comment',
+         views.addComment, name='bug-detail-comment'),
 
 ]
