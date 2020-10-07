@@ -1,8 +1,46 @@
 {% extends "workboard/base.html" %}
 {% block content %}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    var new_count = Number("{{ new_count }}");
+    var active_count = Number("{{ active_count }}");
+    var onhold_count = Number("{{ onhold_count }}");
+    var resolved_count = Number("{{ resolved_count }}");
+    var closed_count = Number("{{ closed_count }}");
+</script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Status', 'Number of Bugs'],
+            ['New', new_count],
+            ['Active', active_count],
+            ['On Hold', onhold_count],
+            ['Resolved', resolved_count],
+            ['Closed', closed_count]
+        ]);
+
+        var options = {
+            legend: 'none',
+            colors: ['grey', 'green', 'yellow', 'blue', 'orange'],
+            pieSliceTextStyle: { color: 'black' },
+            titleTextStyle: { fontSize: 18 },
+            backgroundColor: 'transparent'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+</script>
+
 <div class="container">
     <div class="row">
-        <div class="col-sm-10">
+        <div class="col-sm-8" style="margin-top: auto; margin-bottom: auto;">
             <h1>{{ project_title }}</h1>
             <p>{{ project_summary }}</p>
         </div>
@@ -18,12 +56,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-sm-2">
+            <div id="piechart" style="width: 250px; height: 250px;"></div>
+        </div>
         <!--button that we are updating with ellipsis-->
     </div>
 </div>
 <hr>
 <div class="form-group">
-    <a class="btn btn-outline-success" href="{% url 'bug-create' project_id%}"><i class="fa fa-plus"></i> Add New
+    <a class="btn btn-outline-success" href="{% url 'bug-create' project_id%}"><i class="fa fa-plus"></i>
+        Add New
         Bug</a>
 </div>
 {% for bug in bugs %}
@@ -36,23 +79,29 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-9">
-                        <h2><a class="article-title" href="{% url 'bug-detail' bug.id %}">{{ bug.bug_title }}</a></h2>
+                        <h2><a class="article-title" href="{% url 'bug-detail' bug.id %}">{{ bug.bug_title }}</a>
+                        </h2>
                         <p class="text-muted">BUG ID - {{ bug.id }}</p>
 
                         {% if bug.status == "New" %}
-                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:grey"></i> {{ bug.status }}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:grey"></i>
+                            {{ bug.status }}
                         </p>
                         {% elif bug.status == "Active" %}
-                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:green"></i> {{ bug.status }}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:green"></i>
+                            {{ bug.status }}
                         </p>
                         {% elif bug.status == "On Hold" %}
-                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:yellow"></i> {{ bug.status }}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:yellow"></i>
+                            {{ bug.status }}
                         </p>
                         {% elif bug.status == "Resolved" %}
-                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:blue"></i> {{ bug.status }}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:blue"></i>
+                            {{ bug.status }}
                         </p>
                         {% elif bug.status == "Closed" %}
-                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:orange"></i> {{ bug.status }}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:orange"></i>
+                            {{ bug.status }}
                         </p>
                         {% endif %}
                         <p class="article-content">{{ bug.bug_summary }}</p>
@@ -81,4 +130,5 @@
 </article>
 {% endif %}
 {% endfor %}
+
 {% endblock content %}

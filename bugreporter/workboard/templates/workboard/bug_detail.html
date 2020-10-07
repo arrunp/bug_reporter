@@ -64,6 +64,10 @@
     </div>
 </form>
 
+{% if comments_length == 0 %}
+<h5 style="text-align: center;">No Comments</h5>
+{% endif %}
+
 {% for comment in comments %}
 {% if comment.bug.id == object.id %}
 <article class=" media content-section round">

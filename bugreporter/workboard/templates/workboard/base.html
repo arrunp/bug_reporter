@@ -18,7 +18,7 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4" href="{% url 'project-home' %}">Bug Reporter</a>
+                <a class="navbar-brand mr-4" href="{% url 'project-home' %}"><i class="fa fa-bug"> </i> Bug Reporter</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
     </header>
     <main role="main" class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 {% if messages %}
                 {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
@@ -53,6 +53,8 @@
                 {% endif %}
                 {% block content %}{% endblock %}
             </div>
+            <!-- replace the side bar with a pie chart that shows the number of bugs in each status -->
+            <!--
             <div class="col-md-4">
                 <div class="content-section round">
                     <h3>Our Sidebar</h3>
@@ -66,6 +68,7 @@
                     </p>
                 </div>
             </div>
+            -->
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

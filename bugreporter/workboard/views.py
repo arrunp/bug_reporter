@@ -6,7 +6,7 @@ from .models import Project, Bug, Comment
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
+from collections import Counter
 
 '''
 @login_required
@@ -41,10 +41,24 @@ class BugListView(LoginRequiredMixin, ListView):
     ordering = ['-date_posted']
 
     def get_context_data(self, **kwargs):
+
+        bug_status = []
+
+        for bug in Bug.objects.filter(project=Project.objects.filter(id=self.kwargs['pk']).first()):
+            bug_status.append(bug.status)
+
+        bug_status_count = Counter(bug_status)
+
         context = {
             'project_title': Project.objects.filter(id=self.kwargs['pk']).first().title,
             'project_summary': Project.objects.filter(id=self.kwargs['pk']).first().summary,
-            'project_id': self.kwargs['pk']
+            'project_id': self.kwargs['pk'],
+            'new_count': bug_status_count['New'],
+            'onhold_count': bug_status_count['On Hold'],
+            'active_count': bug_status_count['Active'],
+            'resolved_count': bug_status_count['Resolved'],
+            'closed_count': bug_status_count['Closed']
+
         }
 
         kwargs.update(context)
@@ -58,7 +72,8 @@ class BugDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = {
             'project_id': Bug.objects.filter(id=self.kwargs['pk']).first().project.id,
-            'comments': reversed(Comment.objects.all())
+            'comments': reversed(Comment.objects.all()),
+            'comments_length': len(Comment.objects.filter(bug=Bug.objects.filter(id=self.kwargs['pk']).first()))
         }
 
         kwargs.update(context)
