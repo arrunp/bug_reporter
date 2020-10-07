@@ -1,6 +1,7 @@
 
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from .models import Project, Bug, Comment
 from django.contrib.auth.decorators import login_required
@@ -171,6 +172,20 @@ def addComment(request,  **kwargs):
                 id=kwargs['pk']).first()
 
             comment.save()
+
+            context = {
+                'pk': kwargs['pk']
+            }
+
+            return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
+
+
+def deleteComment(request, **kwargs):
+    if request.method == 'POST':
+        if request.POST.get('delete'):
+            comment = Comment()
+
+            Comment.objects.filter(id=comment.id).delete()
 
             context = {
                 'pk': kwargs['pk']

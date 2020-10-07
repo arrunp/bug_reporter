@@ -58,7 +58,7 @@
 <form action="{% url 'bug-detail-comment' object.id %}" method="post">
     {% csrf_token %}
     <div class="form-group" style="text-align: right;">
-        <textarea placeholder="Enter your comment here ..." class="form-control" name="commentField" rows="3"
+        <textarea required placeholder="Enter your comment here ..." class="form-control" name="commentField" rows="3"
             type="text"></textarea>
         <input class="btn btn-primary" type="submit" value="Comment" style="margin-top:10px;" />
     </div>
@@ -70,9 +70,29 @@
 
 {% for comment in comments %}
 {% if comment.bug.id == object.id %}
-<article class=" media content-section round">
+<article class="media content-section round">
     <div class="media-body">
-        <p>{{ comment }}</p>
+        <div class="row">
+            <p class="col-sm-9">{{ comment }}</p>
+            <div class="col-sm-3" style="margin-top:auto; margin-bottom:auto; text-align:right;">
+                <div class="btn-group" role="group">
+                    <button type="button" class="round" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" style="background:white; border:1px lightgrey solid;"><i
+                            class="fa fa-cog"></i>
+                    </button>
+                    <!-- these are the update delete buttons for the comments -->
+                    <!-- might have to put the update and the delete buttons in seperate forms -->
+                    <form action="{% url 'bug-detail-comment-delete' object.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <input class="dropdown-item" type="submit" value="Update" />
+                            <input class="dropdown-item" name="delete" type="submit" value="Delete" />
+                        </div>
+                    </form>
+                    <!-- these are the update delete buttons for the comments -->
+                </div>
+            </div>
+        </div>
         <div class="article-metadata">
             <small class="text-muted">Comment by: <a class="mr-2" href="#">{{ comment.author }}</a></small>
             <small class="text-muted">Created on: {{ comment.created_date|date:"F d, Y  h:i a" }}</small>

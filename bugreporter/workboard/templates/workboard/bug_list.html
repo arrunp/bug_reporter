@@ -66,8 +66,7 @@
 <hr>
 <div class="form-group">
     <a class="btn btn-outline-success" href="{% url 'bug-create' project_id%}"><i class="fa fa-plus"></i>
-        Add New
-        Bug</a>
+        Add New Bug</a>
 </div>
 {% for bug in bugs %}
 {% if project_id == bug.project.id %}
