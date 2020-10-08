@@ -182,11 +182,30 @@ def addComment(request,  **kwargs):
 
 def deleteComment(request, **kwargs):
     if request.method == 'POST':
-        if request.POST.get('delete'):
+        if request.POST.get('deleteComment'):
 
             bug_id = Comment.objects.filter(
                 id=kwargs['pk']).first().bug.id
             Comment.objects.filter(id=kwargs['pk']).delete()
+
+            context = {
+                'pk': bug_id
+            }
+
+            return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
+
+
+def updateComment(request, **kwargs):
+    if request.method == 'POST':
+        if request.POST.get('updateComment'):
+
+            bug_id = Comment.objects.filter(
+                id=kwargs['pk']).first().bug.id
+
+            comment = Comment.objects.filter(id=kwargs['pk']).first()
+
+            comment.text = "hello, update"
+            comment.save()
 
             context = {
                 'pk': bug_id

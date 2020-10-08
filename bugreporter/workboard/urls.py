@@ -21,5 +21,7 @@ urlpatterns = [
          views.addComment, name='bug-detail-comment'),
     path('project/bug/comment/delete/<int:pk>/',
          views.deleteComment, name='bug-detail-comment-delete'),
+    path('project/bug/comment/update/<int:pk>/',
+         views.updateComment, name='bug-detail-comment-update'),
 
 ]

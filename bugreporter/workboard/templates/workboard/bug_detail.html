@@ -82,13 +82,18 @@
                     </button>
                     <!-- these are the update delete buttons for the comments -->
                     <!-- might have to put the update and the delete buttons in seperate forms -->
-                    <form action="{% url 'bug-detail-comment-delete' comment.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <input class="dropdown-item" type="submit" value="Update" />
-                            <input class="dropdown-item" name="delete" type="submit" value="Delete" />
-                        </div>
-                    </form>
+
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <form action="{% url 'bug-detail-comment-update' comment.id %}" method="POST">
+                            {% csrf_token %}
+                            <input class="dropdown-item" name="updateComment" type="submit" value="Update" />
+                        </form>
+                        <form action="{% url 'bug-detail-comment-delete' comment.id %}" method="POST">
+                            {% csrf_token %}
+                            <input class="dropdown-item" name="deleteComment" type="submit" value="Delete" />
+                        </form>
+                    </div>
+
                     <!-- these are the update delete buttons for the comments -->
                 </div>
             </div>
