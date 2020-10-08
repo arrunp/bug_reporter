@@ -183,12 +183,13 @@ def addComment(request,  **kwargs):
 def deleteComment(request, **kwargs):
     if request.method == 'POST':
         if request.POST.get('delete'):
-            comment = Comment()
 
-            Comment.objects.filter(id=comment.id).delete()
+            bug_id = Comment.objects.filter(
+                id=kwargs['pk']).first().bug.id
+            Comment.objects.filter(id=kwargs['pk']).delete()
 
             context = {
-                'pk': kwargs['pk']
+                'pk': bug_id
             }
 
             return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
