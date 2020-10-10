@@ -81,8 +81,6 @@
                             class="fa fa-cog"></i>
                     </button>
                     <!-- these are the update delete buttons for the comments -->
-                    <!-- might have to put the update and the delete buttons in seperate forms -->
-
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                         <form action="{% url 'bug-detail-comment-update' comment.id %}" method="POST">
                             {% csrf_token %}
@@ -90,10 +88,10 @@
                         </form>
                         <form action="{% url 'bug-detail-comment-delete' comment.id %}" method="POST">
                             {% csrf_token %}
-                            <input class="dropdown-item" name="deleteComment" type="submit" value="Delete" />
+                            <input class="dropdown-item" name="deleteComment" type="submit" value="Delete"
+                                onclick="return confirm('Are you sure you would like to delete your comment?');" />
                         </form>
                     </div>
-
                     <!-- these are the update delete buttons for the comments -->
                 </div>
             </div>

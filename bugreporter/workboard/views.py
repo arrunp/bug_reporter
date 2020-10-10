@@ -58,7 +58,8 @@ class BugListView(LoginRequiredMixin, ListView):
             'onhold_count': bug_status_count['On Hold'],
             'active_count': bug_status_count['Active'],
             'resolved_count': bug_status_count['Resolved'],
-            'closed_count': bug_status_count['Closed']
+            'closed_count': bug_status_count['Closed'],
+            'bug_count': len(bug_status)
 
         }
 
@@ -204,6 +205,8 @@ def updateComment(request, **kwargs):
 
             comment = Comment.objects.filter(id=kwargs['pk']).first()
 
+            # currently clicking update changes the updated message to this hardcoded text
+            # need to change it to accept message user types in + saves only after user hits save
             comment.text = "hello, update"
             comment.save()
 

@@ -45,6 +45,20 @@
             <p>{{ project_summary }}</p>
         </div>
         <!--button that we are updating with ellipsis-->
+
+        {% if bug_count == 0 %}
+        <div class="col-sm-4" style="text-align:right; margin-top:auto; margin-bottom:auto;">
+            <div class="btn-group" role="group">
+                <button type="button" class="round" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    style="background:white; border:1px lightgrey solid;"><i class="fa fa-cog"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="{% url 'project-update' project_id %}">Update</a>
+                    <a class="dropdown-item" href="{% url 'project-delete' project_id %}">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
         <div class="col-sm-2" style="text-align:right; margin-top:auto; margin-bottom:auto;">
             <div class="btn-group" role="group">
                 <button type="button" class="round" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -56,10 +70,10 @@
                 </div>
             </div>
         </div>
-
         <div class="col-sm-2">
             <div id="piechart" style="width: 250px; height: 250px;"></div>
         </div>
+        {% endif %}
         <!--button that we are updating with ellipsis-->
     </div>
 </div>
@@ -68,6 +82,10 @@
     <a class="btn btn-outline-success" href="{% url 'bug-create' project_id%}"><i class="fa fa-plus"></i>
         Add New Bug</a>
 </div>
+{% if bug_count == 0 %}
+<h5 style="text-align: center;">No Bugs</h5>
+{% endif %}
+
 {% for bug in bugs %}
 {% if project_id == bug.project.id %}
 <article class=" media content-section round">
