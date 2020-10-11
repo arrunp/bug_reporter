@@ -1,5 +1,6 @@
 {% extends "workboard/base.html" %}
 {% block content %}
+
 <div class="form-group">
     <a class="btn btn-outline-secondary" href="{% url 'bug-home' project_id %}">Back to Project</a>
 </div>
@@ -82,14 +83,21 @@
                     </button>
                     <!-- these are the update delete buttons for the comments -->
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                        <a class="dropdown-item" href="{% url 'bug-detail-comment-update' comment.id %}">Update</a>
+
+                        <!--
                         <form action="{% url 'bug-detail-comment-update' comment.id %}" method="POST">
                             {% csrf_token %}
                             <input class="dropdown-item" name="updateComment" type="submit" value="Update" />
                         </form>
+                    -->
                         <form action="{% url 'bug-detail-comment-delete' comment.id %}" method="POST">
                             {% csrf_token %}
+
                             <input class="dropdown-item" name="deleteComment" type="submit" value="Delete"
                                 onclick="return confirm('Are you sure you would like to delete your comment?');" />
+
                         </form>
                     </div>
                     <!-- these are the update delete buttons for the comments -->
@@ -99,6 +107,7 @@
         <div class="article-metadata">
             <small class="text-muted">Comment by: <a class="mr-2" href="#">{{ comment.author }}</a></small>
             <small class="text-muted">Created on: {{ comment.created_date|date:"F d, Y  h:i a" }}</small>
+            <small class="text-muted" style="text-align: right;">{{ edited }}</small>
         </div>
     </div>
 </article>

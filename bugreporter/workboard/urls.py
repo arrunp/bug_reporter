@@ -1,9 +1,10 @@
 from django.urls import path
 from . import views
-from .views import ProjectListView, BugListView, BugDetailView, ProjectCreateView, BugCreateView, ProjectUpdateView, BugUpdateView, BugDeleteView, ProjectDeleteView
+from .views import ProjectListView, BugListView, BugDetailView, ProjectCreateView, BugCreateView, ProjectUpdateView, BugUpdateView, BugDeleteView, ProjectDeleteView, CommentUpdateView
 
 urlpatterns = [
     path('', ProjectListView.as_view(), name='project-home'),
+    # changing this to search view
     path('project/<int:pk>/', BugListView.as_view(), name='bug-home'),
     path('project/bug/<int:pk>/',
          BugDetailView.as_view(), name='bug-detail'),
@@ -22,6 +23,6 @@ urlpatterns = [
     path('project/bug/comment/delete/<int:pk>/',
          views.deleteComment, name='bug-detail-comment-delete'),
     path('project/bug/comment/update/<int:pk>/',
-         views.updateComment, name='bug-detail-comment-update'),
+         CommentUpdateView.as_view(), name='bug-detail-comment-update'),
 
 ]

@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -187,7 +186,12 @@ def deleteComment(request, **kwargs):
 
             bug_id = Comment.objects.filter(
                 id=kwargs['pk']).first().bug.id
-            Comment.objects.filter(id=kwargs['pk']).delete()
+
+            if Comment.objects.filter(id=kwargs['pk']).first().author == request.user:
+                Comment.objects.filter(id=kwargs['pk']).delete()
+            else:
+                messages.warning(
+                    request, 'You cannot delete comments that are not yours')
 
             context = {
                 'pk': bug_id
@@ -196,6 +200,7 @@ def deleteComment(request, **kwargs):
             return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
 
 
+'''
 def updateComment(request, **kwargs):
     if request.method == 'POST':
         if request.POST.get('updateComment'):
@@ -204,14 +209,41 @@ def updateComment(request, **kwargs):
                 id=kwargs['pk']).first().bug.id
 
             comment = Comment.objects.filter(id=kwargs['pk']).first()
+            comment_inital = comment.text
 
             # currently clicking update changes the updated message to this hardcoded text
             # need to change it to accept message user types in + saves only after user hits save
             comment.text = "hello, update"
             comment.save()
 
+            edited = "sdfsdf"
+
+            if comment_inital != comment.text:
+                edited = "(Edited)"
+
             context = {
                 'pk': bug_id
             }
 
-            return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
+            return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)), {'edited': edited})
+'''
+
+
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    template_name = "workboard/comment_update.html"
+    fields = ['text']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        comment = self.get_object()
+        if self.request.user == comment.author:
+            return True
+        else:
+            return False
+
+    def get_success_url(self):
+        return reverse('bug-detail', args=(self.object.bug.id,))
