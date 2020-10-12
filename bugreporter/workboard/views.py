@@ -94,7 +94,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
 class BugCreateView(LoginRequiredMixin, CreateView):
     model = Bug
-    fields = ['bug_title', 'bug_type', 'status', 'bug_summary']
+    fields = ['bug_title', 'bug_type', 'status', 'severity', 'bug_summary']
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -123,7 +123,7 @@ class ProjectUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class BugUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Bug
     template_name = "workboard/bug_update.html"
-    fields = ['bug_title', 'bug_type', 'status', 'bug_summary']
+    fields = ['bug_title', 'bug_type', 'status', 'severity', 'bug_summary']
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -164,8 +164,11 @@ class ProjectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def addComment(request,  **kwargs):
-    # things that worked, get rid of self, find a way to reference bug for comment.bug
-    # include dictionary to send the bug id to the comments page
+
+    context = {
+        'pk': kwargs['pk']
+    }
+
     if request.method == 'POST':
         if request.POST.get('content'):
             comment = Comment()
@@ -179,6 +182,12 @@ def addComment(request,  **kwargs):
             context = {
                 'pk': kwargs['pk']
             }
+
+            return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
+
+        else:
+            messages.warning(
+                request, 'Please add text in the comment field to post')
 
             return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
 
@@ -201,35 +210,6 @@ def deleteComment(request, **kwargs):
             }
 
             return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
-
-
-'''
-def updateComment(request, **kwargs):
-    if request.method == 'POST':
-        if request.POST.get('updateComment'):
-
-            bug_id = Comment.objects.filter(
-                id=kwargs['pk']).first().bug.id
-
-            comment = Comment.objects.filter(id=kwargs['pk']).first()
-            comment_inital = comment.text
-
-            # currently clicking update changes the updated message to this hardcoded text
-            # need to change it to accept message user types in + saves only after user hits save
-            comment.text = "hello, update"
-            comment.save()
-
-            edited = "sdfsdf"
-
-            if comment_inital != comment.text:
-                edited = "(Edited)"
-
-            context = {
-                'pk': bug_id
-            }
-
-            return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)), {'edited': edited})
-'''
 
 
 class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -260,7 +240,8 @@ def bugSearch(request):
 
         for word in search:
             found_bugs = Bug.objects.filter(
-                Q(bug_title__icontains=word) | Q(bug_summary__icontains=word)
+                Q(bug_title__icontains=word) | Q(
+                    bug_summary__icontains=word) | Q(status__icontains=word)
             ).distinct()
 
             for bug in found_bugs:

@@ -28,6 +28,10 @@ class Bug(models.Model):
     Bug = 'Bug'
     Task = 'Task'
 
+    High = 'High'
+    Medium = 'Medium'
+    Low = 'Low'
+
     STATUS_CHOICES = [
         (New, 'New'),
         (Active, 'Active'),
@@ -41,6 +45,12 @@ class Bug(models.Model):
         (Task, 'Task')
     ]
 
+    SEVERITY = [
+        (High, 'High'),
+        (Medium, 'Medium'),
+        (Low, 'Low')
+    ]
+
     bug_title = models.CharField(max_length=150)
     bug_summary = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
@@ -51,6 +61,8 @@ class Bug(models.Model):
         max_length=8, choices=STATUS_CHOICES, default=New)
     bug_type = models.CharField(
         max_length=4, choices=BUG_TYPE_CHOICES, default=Bug)
+    severity = models.CharField(
+        max_length=7, choices=SEVERITY, default=Medium)
 
     def __str__(self):
         return self.bug_title
