@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -247,3 +248,20 @@ class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('bug-detail', args=(self.object.bug.id,))
+
+
+def bugSearch(request):
+    if request.method == 'GET':
+        search = request.GET.get('bugSearch')
+        queryset = []
+        search = search.split(" ")
+
+        for word in search:
+            found_bugs = Bug.objects.filter(
+                Q(bug_title__icontains=word) | Q(bug_summary__icontains=word)
+            ).distinct()
+
+            for bug in found_bugs:
+                queryset.append(bug)
+
+        return render(request, 'workboard/bug_search.html', {'found_bugs': queryset})

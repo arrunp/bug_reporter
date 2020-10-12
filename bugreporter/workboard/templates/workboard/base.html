@@ -28,10 +28,13 @@
                         <a class="nav-item nav-link" href="{% url 'project-home' %}">Projects</a>
                     </div>
 
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Bug Search" aria-label="Search">
-                        <button class="btn btn-primary " type="submit"><i class="fa fa-search"></i></button>
+                    <!--search bar-->
+                    <form action="{% url 'bug-search' %}" method=" get" class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" name="bugSearch" placeholder="Bug Search"
+                            aria-label="Search">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                     </form>
+                    <!--search bar-->
 
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">

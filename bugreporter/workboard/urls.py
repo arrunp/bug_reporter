@@ -24,5 +24,7 @@ urlpatterns = [
          views.deleteComment, name='bug-detail-comment-delete'),
     path('project/bug/comment/update/<int:pk>/',
          CommentUpdateView.as_view(), name='bug-detail-comment-update'),
+    path('bug/search/',
+         views.bugSearch, name='bug-search'),
 
 ]

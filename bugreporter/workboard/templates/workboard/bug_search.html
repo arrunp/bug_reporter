@@ -1,0 +1,78 @@
+{% extends "workboard/base.html" %}
+{% block content %}
+{% if found_bugs %}
+<div style="margin-top: auto; margin-bottom: auto; padding-top: 35px; padding-bottom: 25px; ">
+    <h2>Search results found: </h2>
+    <hr>
+</div>
+{% for bug in found_bugs %}
+<article class=" media content-section round">
+    <img class="rounded-circle article-img" src="{{ bug.creator.profile.image.url }}">
+    <div class="media-body">
+        <div class="media-body">
+            <!--adding the div for updates here-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h2><a class="article-title" href="{% url 'bug-detail' bug.id %}">{{ bug.bug_title }}</a>
+                        </h2>
+                        <p class="text-muted">BUG ID -
+                            {{ bug.id }}</p>
+
+
+                        {% if bug.status == "New" %}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:grey"></i>
+                            {{ bug.status }}
+                        </p>
+                        {% elif bug.status == "Active" %}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:green"></i>
+                            {{ bug.status }}
+                        </p>
+                        {% elif bug.status == "On Hold" %}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:yellow"></i>
+                            {{ bug.status }}
+                        </p>
+                        {% elif bug.status == "Resolved" %}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:blue"></i>
+                            {{ bug.status }}
+                        </p>
+                        {% elif bug.status == "Closed" %}
+                        <p class="text-muted">Status: <i class="fa fa-circle" style="color:orange"></i>
+                            {{ bug.status }}
+                        </p>
+                        {% endif %}
+
+                        <p class="article-content">{{ bug.bug_summary }}</p>
+                    </div>
+                    <div class="col-sm-3" style="margin:auto; text-align:right;">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="round" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false" style="background:white; border:1px lightgrey solid;"><i
+                                    class="fa fa-cog"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{% url 'bug-update' bug.id %}">Update</a>
+                                <a class="dropdown-item" href="{% url 'bug-delete' bug.id %}">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-metadata">
+                <small class="text-muted">Created by: <a class="mr-2" href="#">{{ bug.creator }}</a></small>
+                <small class="text-muted">Created on: {{ bug.date_posted|date:"F d, Y" }}</small>
+            </div>
+        </div>
+
+</article>
+{% endfor %}
+{% else %}
+<div style="margin-top: auto; margin-bottom: auto; padding-top: 35px;">
+    <h2>No Bugs Found in Search</h2>
+</div>
+<div class="form-group" style="padding-top: 30px;">
+    <a class="btn btn-outline-secondary" href="{% url 'project-home' %}">Back to Home</a>
+</div>
+{% endif %}
+{% endblock content %}
