@@ -100,12 +100,13 @@
                     <div class="col-sm-9">
                         <h2><a class="article-title" href="{% url 'bug-detail' bug.id %}">{{ bug.bug_title }}</a>
                         </h2>
+
                         {% if bug.bug_type == 'Task' %}
                         <p class="text-muted">TASK ID -
-                            {{ bug.id }}</p>
+                            {{ bug.id }} | Severity: {{ bug.severity }}</p>
                         {% else %}
                         <p class="text-muted">BUG ID -
-                            {{ bug.id }}</p>
+                            {{ bug.id }} | Severity: {{ bug.severity }}</p>
                         {% endif %}
 
                         {% if bug.status == "New" %}
