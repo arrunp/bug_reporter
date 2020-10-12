@@ -55,15 +55,15 @@
 <div style="margin-bottom: 20px;">
     <h4>Comments:</h4>
 </div>
-
+<!--comment text field-->
 <form action="{% url 'bug-detail-comment' object.id %}" method="post">
     {% csrf_token %}
     <div class="form-group" style="text-align: right;">
-        <textarea required placeholder="Enter your comment here ..." class="form-control" name="commentField" rows="3"
-            type="text"></textarea>
+        <textarea placeholder="Enter your comment here ..." name="content" id="editor"></textarea>
         <input class="btn btn-primary" type="submit" value="Comment" style="margin-top:10px;" />
     </div>
 </form>
+<!--comment text field-->
 
 {% if comments_length == 0 %}
 <h5 style="text-align: center;">No Comments</h5>
@@ -74,7 +74,9 @@
 <article class="media content-section round">
     <div class="media-body">
         <div class="row">
-            <p class="col-sm-9">{{ comment }}</p>
+            <div class="col-sm-9">
+                <p>{{ comment | safe }}</p>
+            </div>
             <div class="col-sm-3" style="margin-top:auto; margin-bottom:auto; text-align:right;">
                 <div class="btn-group" role="group">
                     <button type="button" class="round" data-toggle="dropdown" aria-haspopup="true"
@@ -86,12 +88,6 @@
 
                         <a class="dropdown-item" href="{% url 'bug-detail-comment-update' comment.id %}">Update</a>
 
-                        <!--
-                        <form action="{% url 'bug-detail-comment-update' comment.id %}" method="POST">
-                            {% csrf_token %}
-                            <input class="dropdown-item" name="updateComment" type="submit" value="Update" />
-                        </form>
-                    -->
                         <form action="{% url 'bug-detail-comment-delete' comment.id %}" method="POST">
                             {% csrf_token %}
 
@@ -113,6 +109,26 @@
 </article>
 {% endif %}
 {% endfor %}
+<script type="module">
+    import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
 
+            toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote'],
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                ]
+            }
+
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 {% endblock content %}

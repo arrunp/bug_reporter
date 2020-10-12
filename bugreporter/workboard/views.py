@@ -139,7 +139,6 @@ class BugUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class BugDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Bug
-    success_url = '/'
 
     def test_func(self):
         bug = self.get_object()
@@ -147,6 +146,9 @@ class BugDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         else:
             return False
+
+    def get_success_url(self):
+        return reverse('bug-home', args=(self.object.project.id,))
 
 
 class ProjectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -165,9 +167,9 @@ def addComment(request,  **kwargs):
     # things that worked, get rid of self, find a way to reference bug for comment.bug
     # include dictionary to send the bug id to the comments page
     if request.method == 'POST':
-        if request.POST.get('commentField'):
+        if request.POST.get('content'):
             comment = Comment()
-            comment.text = request.POST.get('commentField')
+            comment.text = request.POST.get('content')
             comment.author = request.user
             comment.bug = Bug.objects.filter(
                 id=kwargs['pk']).first()
