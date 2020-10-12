@@ -94,7 +94,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
 class BugCreateView(LoginRequiredMixin, CreateView):
     model = Bug
-    fields = ['bug_title', 'status', 'bug_summary']
+    fields = ['bug_title', 'bug_type', 'status', 'bug_summary']
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -123,7 +123,7 @@ class ProjectUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class BugUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Bug
     template_name = "workboard/bug_update.html"
-    fields = ['bug_title', 'status', 'bug_summary']
+    fields = ['bug_title', 'bug_type', 'status', 'bug_summary']
 
     def form_valid(self, form):
         form.instance.creator = self.request.user

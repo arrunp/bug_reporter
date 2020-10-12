@@ -25,12 +25,20 @@ class Bug(models.Model):
     Resolved = 'Resolved'
     Closed = 'Closed'
 
+    Bug = 'Bug'
+    Task = 'Task'
+
     STATUS_CHOICES = [
         (New, 'New'),
         (Active, 'Active'),
         (OnHold, 'On Hold'),
         (Resolved, 'Resolved'),
         (Closed, 'Closed')
+    ]
+
+    BUG_TYPE_CHOICES = [
+        (Bug, 'Bug'),
+        (Task, 'Task')
     ]
 
     bug_title = models.CharField(max_length=150)
@@ -41,6 +49,8 @@ class Bug(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, default=0)
     status = models.CharField(
         max_length=8, choices=STATUS_CHOICES, default=New)
+    bug_type = models.CharField(
+        max_length=4, choices=BUG_TYPE_CHOICES, default=Bug)
 
     def __str__(self):
         return self.bug_title
