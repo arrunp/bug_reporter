@@ -9,6 +9,7 @@
     var onhold_count = Number("{{ onhold_count }}");
     var resolved_count = Number("{{ resolved_count }}");
     var closed_count = Number("{{ closed_count }}");
+    var total_bugs = new_count + active_count + onhold_count + resolved_count + closed_count
 </script>
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
@@ -27,6 +28,7 @@
 
         var options = {
             legend: 'none',
+            title: 'Total Bugs: ' + String(total_bugs),
             colors: ['grey', 'green', 'yellow', 'blue', 'orange'],
             pieSliceTextStyle: { color: 'black' },
             titleTextStyle: { fontSize: 18 },

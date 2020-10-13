@@ -241,7 +241,7 @@ def bugSearch(request):
         for word in search:
             found_bugs = Bug.objects.filter(
                 Q(bug_title__icontains=word) | Q(
-                    bug_summary__icontains=word) | Q(status__icontains=word)
+                    bug_summary__icontains=word)
             ).distinct()
 
             for bug in found_bugs:
