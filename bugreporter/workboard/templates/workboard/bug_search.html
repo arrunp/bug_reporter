@@ -5,6 +5,7 @@
     <h2>Search results found: </h2>
     <hr>
 </div>
+
 {% for bug in found_bugs %}
 <article class=" media content-section round">
     <img class="rounded-circle article-img" src="{{ bug.creator.profile.image.url }}">
@@ -72,6 +73,7 @@
 
 </article>
 {% endfor %}
+
 {% else %}
 <div style="margin-top: auto; margin-bottom: auto; padding-top: 35px;">
     <h2>No Bugs Found in Search</h2>

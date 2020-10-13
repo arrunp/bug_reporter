@@ -36,6 +36,7 @@ class ProjectListView(LoginRequiredMixin, ListView):
 
 
 class BugListView(LoginRequiredMixin, ListView):
+    paginate_by = 6
     model = Bug
     template_name = 'workboard/bug_list.html'
     context_object_name = 'bugs'
