@@ -193,6 +193,25 @@ def addComment(request,  **kwargs):
             return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
 
 
+def updateComment(request, **kwargs):
+    if request.method == 'POST':
+        if request.POST.get('updateComment'):
+
+            bug_id = Comment.objects.filter(
+                id=kwargs['pk']).first().bug.id
+
+            comment = Comment.objects.filter(id=kwargs['pk']).first()
+
+            comment.text = "hello, update"
+            comment.save()
+
+            context = {
+                'pk': bug_id
+            }
+
+            return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
+
+
 def deleteComment(request, **kwargs):
     if request.method == 'POST':
         if request.POST.get('deleteComment'):
@@ -213,6 +232,9 @@ def deleteComment(request, **kwargs):
             return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
 
 
+'''
+
+
 class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Comment
     template_name = "workboard/comment_update.html"
@@ -231,6 +253,7 @@ class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('bug-detail', args=(self.object.bug.id,))
+'''
 
 
 def bugSearch(request):
