@@ -1,16 +1,41 @@
 {% extends "workboard/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
 <div class="content-section">
-    <form method="POST">
+    <legend class="border-bottom mb-4">Update Comment</legend>
+    <form action="{% url 'bug-detail-comment-update' comment.id %}" method="POST">
         {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Update Comment</legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Update</button>
+        <div class="form-group" style="text-align: right;">
+            <textarea placeholder="Enter your comment here ..." name="updateComment"
+                id="editor1">{{ comment.text }}</textarea>
+            <input class="btn btn-primary" type="submit" value="Update" style="margin-top:10px;" />
         </div>
     </form>
+
 </div>
+
+
+<script type="module">
+    import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor1'), {
+
+            toolbar: ['heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote'],
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                ]
+            }
+
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 {% endblock content %}

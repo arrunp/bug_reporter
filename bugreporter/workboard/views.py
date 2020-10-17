@@ -193,6 +193,16 @@ def addComment(request,  **kwargs):
             return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
 
 
+def updateCommentView(request, **kwargs):
+    comment = Comment.objects.filter(id=kwargs['pk']).first()
+
+    context = {
+        'comment': comment
+    }
+
+    return render(request, 'workboard/comment_update.html', context)
+
+
 def updateComment(request, **kwargs):
     if request.method == 'POST':
         if request.POST.get('updateComment'):
@@ -202,11 +212,12 @@ def updateComment(request, **kwargs):
 
             comment = Comment.objects.filter(id=kwargs['pk']).first()
 
-            comment.text = "hello, update"
+            comment.text = request.POST.get('updateComment')
             comment.save()
 
             context = {
-                'pk': bug_id
+                'pk': bug_id,
+                'comment': comment
             }
 
             return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))

@@ -94,11 +94,7 @@
                     </button>
                     <!-- these are the update delete buttons for the comments -->
                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <form action="{% url 'bug-detail-comment-update' comment.id %}" method="POST">
-                            {% csrf_token %}
-                            <input class="dropdown-item" name="updateComment"
-                                href="{% url 'bug-detail-comment-update' comment.id %}" type="submit" value="Update">
-                        </form>
+                        <a class="dropdown-item" href="{% url 'bug-detail-comment-update-view' comment.id %}">Update</a>
                         <form action="{% url 'bug-detail-comment-delete' comment.id %}" method="POST">
                             {% csrf_token %}
 
