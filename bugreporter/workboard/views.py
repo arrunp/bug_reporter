@@ -196,11 +196,25 @@ def addComment(request,  **kwargs):
 def updateCommentView(request, **kwargs):
     comment = Comment.objects.filter(id=kwargs['pk']).first()
 
-    context = {
-        'comment': comment
-    }
+    if comment.author == request.user:
+        context = {
+            'pk': kwargs['pk'],
+            'comment': comment
+        }
 
-    return render(request, 'workboard/comment_update.html', context)
+        return render(request, 'workboard/comment_update.html', context)
+
+    else:
+
+        bug_id = comment.bug.id
+
+        context = {
+            'pk': bug_id
+        }
+        messages.warning(
+            request, 'You cannot update comments that are not yours')
+
+        return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
 
 
 def updateComment(request, **kwargs):
@@ -216,8 +230,7 @@ def updateComment(request, **kwargs):
             comment.save()
 
             context = {
-                'pk': bug_id,
-                'comment': comment
+                'pk': bug_id
             }
 
             return HttpResponseRedirect(reverse('bug-detail', args=(context['pk'],)))
