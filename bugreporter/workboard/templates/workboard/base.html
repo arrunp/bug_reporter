@@ -78,10 +78,11 @@
 
     <script>
         var message_ele = document.getElementById("timed-message");
-
-        setTimeout(function () {
-            message_ele.style.display = "none";
-        }, 4000);
+        if (message_ele) {
+            setTimeout(function () {
+                message_ele.style.display = "none";
+            }, 4000);
+        }
     </script>
 </body>
 

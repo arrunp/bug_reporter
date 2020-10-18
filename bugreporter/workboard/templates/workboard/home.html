@@ -22,4 +22,28 @@
     </div>
 </article>
 {% endfor %}
+
+<div class="pagination">
+    <span class="step-links" style="margin-left: auto; padding-top: 15px; padding-bottom: 50px;">
+        <div role="group" aria-label="Basic example">
+            {% if page_obj.has_previous %}
+            <button type="button" class="btn"><a href="?page=1">&laquo; first</a></button>
+            <button type="button" class="btn"><a href="?page={{ page_obj.previous_page_number }}">previous</a></button>
+
+            {% endif %}
+
+            <span class="current">
+                <button style="color:black" type="button" class="btn">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </button>
+            </span>
+
+            {% if page_obj.has_next %}
+            <button type="button" class="btn"><a href="?page={{ page_obj.next_page_number }}">next</a></button>
+            <button type="button" class="btn"><a href="?page={{ page_obj.paginator.num_pages }}">last
+                    &raquo;</a></button>
+            {% endif %}
+        </div>
+    </span>
+</div>
 {% endblock content %}

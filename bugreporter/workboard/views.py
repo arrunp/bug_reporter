@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -25,6 +25,7 @@ class ProjectListView(LoginRequiredMixin, ListView):
     template_name = 'workboard/home.html'
     context_object_name = 'projects'
     ordering = ['-date_posted']
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = {
@@ -36,11 +37,15 @@ class ProjectListView(LoginRequiredMixin, ListView):
 
 
 class BugListView(LoginRequiredMixin, ListView):
-    paginate_by = 6
     model = Bug
     template_name = 'workboard/bug_list.html'
     context_object_name = 'bugs'
     ordering = ['-date_posted']
+    paginate_by = 6
+
+    def get_queryset(self):
+        project = get_object_or_404(Project, id=self.kwargs['pk'])
+        return Bug.objects.filter(project=project).order_by('-date_posted')
 
     def get_context_data(self, **kwargs):
 

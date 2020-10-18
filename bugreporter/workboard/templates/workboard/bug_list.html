@@ -91,7 +91,7 @@
 {% endif %}
 
 {% for bug in page_obj %}
-{% if project_id == bug.project.id %}
+
 <article class=" media content-section round">
     <img class="rounded-circle article-img" src="{{ bug.creator.profile.image.url }}">
     <div class="media-body">
@@ -157,7 +157,7 @@
         </div>
 
 </article>
-{% endif %}
+
 {% endfor %}
 
 <div class="pagination">
