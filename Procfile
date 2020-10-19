@@ -1,1 +1,1 @@
-web: gunicorn bugreporter.wsgi
+web: gunicorn --pythonpath bugreporter bugreporter.wsgi
