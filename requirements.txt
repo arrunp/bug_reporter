@@ -17,7 +17,6 @@ chardet==3.0.4
 Click==7.0
 cycler==0.10.0
 Cython==0.29.15
-darkflow==1.0.0
 decorator==4.4.0
 defusedxml==0.6.0
 detect==2019.4.13
