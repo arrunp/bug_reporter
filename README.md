@@ -42,7 +42,9 @@ Please feel free to create your own account or use the sample account below to l
 
 <p>Choose the severity of the bug (High meaning the bug is urgent and needs to be fixed ASAP while low means the issue is not very important and can be taken care of when possible).</p>
 
-<p>Finally the bug needs a bug summary, to give those who see it an idea of what the issue is.</p>ß
+<p>Finally the bug needs a bug summary, to give those who see it an idea of what the issue is.</p>
+
+<p>Once these details are added in, click 'Create' to log the bug.</p>
 
 <img src="./readme_img/new_bug.jpg">
 
