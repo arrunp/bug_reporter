@@ -6,7 +6,7 @@ Please feel free to create your own account or use the sample account below to l
 **Username:** Test_User <br />
 **Password:** Testing321 <br />
 
-<h2>1. Projects</h2>
+<h3>1. Projects</h3>
 <p>Once logged in, the main page of the application shows you what projects users are working on.</p>
 <img src="./readme_img/project.jpg">
 
@@ -19,6 +19,12 @@ The only fields required are the title of your project and a quick summary to he
 Once these fields have been filled click 'Create.'
 
 Once you've created your project and are redirected to the 'Projects' screen, click on the title of the project to be directed to where to log bugs and tasks for the project. If you wish to update the project or delete the project, you can also do that from this screen:
-<img src="./readme_img/project_u/d.jpg">
+<img src="./readme_img/project_u_d.jpg">
+
+<h3>2. Bugs</h3>
+The bugs screen shows what bugs and tasks to be completed have been assigned under each project.
+<img src="./readme_img/bug_screen.jpg">
+
+
 
 
