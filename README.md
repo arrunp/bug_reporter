@@ -11,18 +11,18 @@ Please feel free to create your own account or use the sample account below to l
 <img src="./readme_img/project.jpg">
 
 <h4>1.1 Adding a new project</h4>
-Click on the 'Add New Project' to add a new project that you would like to track your bug and tasks for as you work on it.
+<p>Click on the 'Add New Project' to add a new project that you would like to track your bug and tasks for as you work on it.</p>
 
-The only fields required are the title of your project and a quick summary to help distinguish what the project is about:
+<p>The only fields required are the title of your project and a quick summary to help distinguish what the project is about:</p>
 <img src="./readme_img/new_project.jpg">
 
-Once these fields have been filled click 'Create.'
+<p>Once these fields have been filled click 'Create.'</p>
 
-Once you've created your project and are redirected to the 'Projects' screen, click on the title of the project to be directed to where to log bugs and tasks for the project. If you wish to update the project or delete the project, you can also do that from this screen:
+<p>Once you've created your project and are redirected to the 'Projects' screen, click on the title of the project to be directed to where to log bugs and tasks for the project. If you wish to update the project or delete the project, you can also do that from this screen:</p>
 <img src="./readme_img/project_u_d.jpg">
 
 <h3>2. Bugs</h3>
-The bugs screen shows what bugs and tasks to be completed have been assigned under each project.
+<p>The bugs screen shows what bugs and tasks to be completed have been assigned under each project.</p>
 <img src="./readme_img/bug_screen.jpg">
 
 
