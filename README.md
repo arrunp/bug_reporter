@@ -22,7 +22,7 @@ Please feel free to create your own account or use the sample account below to l
 <img src="./readme_img/project_u_d.jpg">
 
 <h3>2. Bugs</h3>
-<p>The bugs screen shows what bugs and tasks to be completed have been assigned under each project.</p>
+<p>The bugs screen shows the bugs and tasks that are assigned under each project.</p>
 <img src="./readme_img/bug_screen.jpg">
 
 <h4>2.1 Adding a new bug</h4>
