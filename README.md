@@ -6,11 +6,11 @@ Please feel free to create your own account or use the sample account below to l
 **Username:** Test_User <br />
 **Password:** Testing321 <br />
 
-<h3>1. Projects</h3>
+<h2>1. Projects</h2>
 <p>Once logged in, the main page of the application shows you what projects users are working on.</p>
 <img src="./readme_img/project.jpg">
 
-<h5>1.1 Adding a new project</h5>
+<h4>1.1 Adding a new project</h4>
 Click on the 'Add New Project' to add a new project that you would like to track your bug and tasks for as you work on it.
 
 The only fields required are the title of your project and a quick summary to help distinguish what the project is about:
