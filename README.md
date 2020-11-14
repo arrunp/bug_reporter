@@ -28,5 +28,22 @@ Please feel free to create your own account or use the sample account below to l
 <h4>2.1 Adding a new bug</h4>
 <p>Click on the 'Add New Bug' button to add a new bug or task that needs to be tracked for your project.</p>
 
+<p>Add a title to your bug and choose what type of bug it is (if it is an issue produced by the project, it can be given the type 'Bug.' If it is an enhancement or a new addition to the project, it can be given the type 'Task').</p>
+
+<p>Set the status of the bug (most bugs will be given the status of 'New' but as the bug progresses this status will change):</p>
+
+<ul>
+<li>New: A bug that is just been logged</li>
+<li>Active: A bug that is being worked on to solve</li>
+<li>On Hold: A bug that cannot be handled at the moment or will be taken care of in the future</li>
+<li>Resolved: A bug that has been fixed and can be retested</li>
+<li>Closed: A bug that has been solved, tested and is no longer an issue</li>
+</ul>
+
+<p>Choose the severity of the bug (High meaning the bug is urgent and needs to be fixed ASAP while low means the issue is not very important and can be taken care of when possible).</p>
+
+<p>Finally the bug needs a bug summary, to give those who see it an idea of what the issue is.</p>ß
+
+<img src="./readme_img/new_bug.jpg">
 
 
