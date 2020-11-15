@@ -6,6 +6,8 @@ Please feel free to create your own account or use the sample account below to l
 **Username:** Test_User <br />
 **Password:** Testing321 <br />
 
+The Bug Reporter application is a project I have built to help users and their teams have a place to keep track of the bugs and tasks that need to be completed for their projects. It was built using Django and PostgreSQL and deployed to Heroku using AWS S3 for image hosting. Happy project building and I hope the Bug Reporter application can help you keep track of the bugs you come across while building your projects!
+
 <h3>1. Projects</h3>
 <p>Once logged in, the main page of the application shows you what projects users are working on.</p>
 <img src="./readme_img/project.jpg">
@@ -52,4 +54,15 @@ Please feel free to create your own account or use the sample account below to l
 
 <img src="./readme_img/new_bug.jpg">
 
+<p>On the screen for the project, the bugs and tasks that have been logged will be listed out in small blurbs. Each bug will have its title, bug number, severity, status and summary outlined. These details that have been entered for the bug can be updated or deleted by clicking on the cog:</p>
 
+<img src="./readme_img/bug_badge.jpg">
+
+<h4>2.2 Maintaining a bug</h4>
+<p>By clicking on the bug title on the project's home screen, it will open up the bug and allow users to update the bug as its being worked on. This includes changing any of the fields that were added when first creating the bug (ex. updating the title or the status by clicking update ing the cog) but also adding comments, to let those who open the bug have more details on how the progress of the bug is going:</p>
+
+<img src="./readme_img/bug_detail.jpg">
+
+<h3>3. Search</h3>
+
+<h3>4. Profile</h3>
