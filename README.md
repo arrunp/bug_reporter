@@ -59,10 +59,30 @@ The Bug Reporter application is a project I have built to help users and their t
 <img src="./readme_img/bug_badge.jpg">
 
 <h4>2.2 Maintaining a bug</h4>
-<p>By clicking on the bug title on the project's home screen, it will open up the bug and allow users to update the bug as its being worked on. This includes changing any of the fields that were added when first creating the bug (ex. updating the title or the status by clicking update ing the cog) but also adding comments, to let those who open the bug have more details on how the progress of the bug is going:</p>
+<p>By clicking on the bug title on the project's home screen, it will open up the bug and allow users to update the bug as its being worked on. This includes changing any of the fields that were added when first creating the bug (ex. updating the title or the status by clicking update in the cog) but also adding comments, to let those who open the bug have more details on how the progress of the bug is going:</p>
 
 <img src="./readme_img/bug_detail.jpg">
 
-<h3>3. Search</h3>
+<p>The graph in the top right corner gives the users a quick snapshot of how many bugs are in each stage.</p>
+<ul>
+<li>Grey = New</li>
+<li>Green = Active</li>
+<li>Yellow = On Hold</li>
+<li>Blue = Resolved</li>
+<li>Orange = Closed</li>
+</ul>
+
+<h4>2.3 Search</h4>
+<p>Users can use the search bar at the top to search for bugs based on key words from the title of the bug.</p>
+
+<img src="./readme_img/search.jpg">
 
 <h3>4. Profile</h3>
+<p>The user can click on their username in the top navbar to be taken to the page where the can edit their username, email, or change their profile picture to help them standout better when logging bugs:</p>
+
+<img src="./readme_img/profile.jpg">
+
+<h3>5. Future Updates</p>
+<ul>
+<li>Adding tagging functionality: When other users are tagged in the comments of a bug, it will send them an email to notify them that the bug/ comment requires their attention</li>
+</ul>
