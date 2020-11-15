@@ -82,7 +82,7 @@ The Bug Reporter application is a project I have built to help users and their t
 
 <img src="./readme_img/profile.jpg">
 
-<h3>5. Future Updates</p>
+<h3>5. Future Updates</h3>
 <ul>
 <li>Adding tagging functionality: When other users are tagged in the comments of a bug, it will send them an email to notify them that the bug/ comment requires their attention</li>
 </ul>
