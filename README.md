@@ -58,12 +58,7 @@ The Bug Reporter application is a project I have built to help users and their t
 
 <img src="./readme_img/bug_badge.jpg">
 
-<h4>2.2 Maintaining a bug</h4>
-<p>By clicking on the bug title on the project's home screen, it will open up the bug and allow users to update the bug as its being worked on. This includes changing any of the fields that were added when first creating the bug (ex. updating the title or the status by clicking update in the cog) but also adding comments, to let those who open the bug have more details on how the progress of the bug is going:</p>
-
-<img src="./readme_img/bug_detail.jpg">
-
-<p>The graph in the top right corner gives the users a quick snapshot of how many bugs are in each stage.</p>
+<p>The pie graph in the top right corner of the page gives the users a quick snapshot of how many bugs are in each stage for the project.</p>
 <ul>
 <li>Grey = New</li>
 <li>Green = Active</li>
@@ -71,6 +66,11 @@ The Bug Reporter application is a project I have built to help users and their t
 <li>Blue = Resolved</li>
 <li>Orange = Closed</li>
 </ul>
+
+<h4>2.2 Maintaining a bug</h4>
+<p>By clicking on the bug title on the project's home screen, it will open up the bug and allow users to update the bug as its being worked on. This includes changing any of the fields that were added when first creating the bug (ex. updating the title or the status by clicking update in the cog) but also adding comments, to let those who open the bug have more details on how the progress of the bug is going:</p>
+
+<img src="./readme_img/bug_detail.jpg">
 
 <h4>2.3 Search</h4>
 <p>Users can use the search bar at the top to search for bugs based on key words from the title of the bug.</p>
