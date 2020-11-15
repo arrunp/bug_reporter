@@ -27,6 +27,15 @@ The Bug Reporter application is a project I have built to help users and their t
 <p>The bugs screen shows the bugs and tasks that are assigned under each project.</p>
 <img src="./readme_img/bug_screen.jpg">
 
+<p>The pie graph in the top right corner of the page gives the users a quick snapshot of how many bugs are in each stage for the project.</p>
+<ul>
+<li>Grey = New</li>
+<li>Green = Active</li>
+<li>Yellow = On Hold</li>
+<li>Blue = Resolved</li>
+<li>Orange = Closed</li>
+</ul>
+
 <h4>2.1 Adding a new bug</h4>
 <p>Click on the 'Add New Bug' button to add a new bug or task that needs to be tracked for your project.</p>
 
@@ -57,15 +66,6 @@ The Bug Reporter application is a project I have built to help users and their t
 <p>On the screen for the project, the bugs and tasks that have been logged will be listed out in small blurbs. Each bug will have its title, bug number, severity, status and summary outlined. These details that have been entered for the bug can be updated or deleted by clicking on the cog:</p>
 
 <img src="./readme_img/bug_badge.jpg">
-
-<p>The pie graph in the top right corner of the page gives the users a quick snapshot of how many bugs are in each stage for the project.</p>
-<ul>
-<li>Grey = New</li>
-<li>Green = Active</li>
-<li>Yellow = On Hold</li>
-<li>Blue = Resolved</li>
-<li>Orange = Closed</li>
-</ul>
 
 <h4>2.2 Maintaining a bug</h4>
 <p>By clicking on the bug title on the project's home screen, it will open up the bug and allow users to update the bug as its being worked on. This includes changing any of the fields that were added when first creating the bug (ex. updating the title or the status by clicking update in the cog) but also adding comments, to let those who open the bug have more details on how the progress of the bug is going:</p>
