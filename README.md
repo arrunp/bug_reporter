@@ -6,7 +6,7 @@ Please feel free to create your own account or use the sample account below to l
 **Username:** Test_User <br />
 **Password:** Testing321 <br />
 
-The Bug Reporter application is a project I have built to help users and their teams have a place to keep track of the bugs and tasks that need to be completed for their projects. It was built using Django and PostgreSQL and deployed to Heroku using AWS S3 for image hosting. Happy project building and I hope the Bug Reporter application can help you keep track of the bugs you come across while building your projects!
+The Bug Reporter application is a project I have built to help users and their teams have a place to keep track of the bugs and tasks that need to be completed for their projects. It was built using Django and PostgreSQL and deployed to Heroku using AWS S3 for image hosting. Happy coding and I hope the Bug Reporter application can help you keep track of the bugs you come across while building your projects!
 
 <h3>1. Projects</h3>
 <p>Once logged in, the main page of the application shows you what projects users are working on.</p>
